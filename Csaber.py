@@ -7,10 +7,13 @@ from os import urandom
 password = b'password'
 REPS = 20
 
-def rc43(input, key):
+#rc4 encryption takes a stream of bytes and a key and returns an encrypted stream of
+#bytes using the key for encryption
+def rc4(input, key):
     cipher = bytearray(len(input))
     i, j, state, keystream = 0, 0, list(range(256)), bytearray(list(range(len(input))))
 
+    #run key scheduling for designated number of rounds
     for r in range(REPS):
         for i in range(256):
             j = (j + state[i] + key[i % len(key)]) % 256
@@ -24,15 +27,18 @@ def rc43(input, key):
         cipher[i] = ((keystream[i]) ^ input[i])
     return cipher
 
+#encrypt takes a string as a message and a password in bytes and returns and encrypted stream
+#of bytes which is the message concatenated with the iv of 10 random bytes
 def encrypt(message, password):
     message = str.encode(message) #convertmessage to bytes
     iv = urandom(10)
     password += iv
-    encryptedMessage = rc43(message, password)
+    encryptedMessage = rc4(message, password)
     return iv + encryptedMessage  # concatenate iv and encrypted message
+
 
 def decrypt(message, password):
 	iv = message[0:10]  # grab iv from first 10 characters of message
 	password += iv  # add iv to password
 	message = message[10:len(message)]  # real message to decrypt is without the IV
-	return rc43(message, password)  # decrypt and return decrypted message
+	return rc4(message, password)  # decrypt and return decrypted message

@@ -2,18 +2,26 @@
 # with Rachael Johnson arenjae.com, email: rj@arenjae.com
 # Also in close collaboration with the CS300 class and Bart Massey, Professor
 
+#
+
 #PORT = 6283
 addressNames = []
 addressList = []
 addressFile = 'addresses.txt'
 
-# address book
+# address book takes a port as an argument
+# returns a target ip and port
 def addressBook(port):
+	#print a list of names and addresses to choose from
 	for i in range(len(addressList)):
 		print(i + 1, ". ", addressNames[i])
+	#create a target tuple with ip address and port to connect to
 	intTarget = int(input("Choose a person to send a message to: "))
 	target = (addressList[intTarget - 1], port)
+	#Get the name using the same index, from the names list and create the receiver
+	#header variable
 	global recieverHeader
+	#two new lines as specified in requirements specification
 	recieverHeader = "to: " + addressNames[intTarget - 1] + "\r\n\r\n"
 	return target
 

@@ -4,6 +4,11 @@ TauNet
 
 Send and receive encrypted messages over a private network via the internet.
 
+####Build and Execution Instructions
+
+- This program is written in python 3. It will work when run with any version of python 3.3 to 3.5.
+- To run the program all files will need to be in the same location. To execute on the command line enter $ python3 TauNet.py
+
 
 ####For The Encryption
 - Cipher Saber 2
