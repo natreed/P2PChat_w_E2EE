@@ -14,8 +14,8 @@ PORT = 6283
 addressNames = []
 addressList = []
 addressFile = 'addresses.txt'
-strFrom = "from: natreed\r\n"
-strVersion = "version: 0.2\r\n"
+senderHeader = "from: natreed\r\n"
+versionHeader = "version: 0.2\r\n"
 
 
 # address book
@@ -25,8 +25,8 @@ def addressBook():
 	intTarget = int(input("Choose a person to send a message to: "))
 	target = (addressList[intTarget - 1], PORT)
 
-	global strTo
-	strTo = "to: " + addressNames[intTarget - 1] + "\r\n\r\n"
+	global recieverHeader
+	recieverHeader = "to: " + addressNames[intTarget - 1] + "\r\n\r\n"
 
 	return target
 
@@ -64,7 +64,7 @@ def MainScreen():
 		while len(message.encode('utf-8')) > 94:  # restrict message to 94 bytes
 			message = input("Message is too long. \nEnter message:")
 
-		encryptedMessage = Csaber.encrypt(strVersion + strFrom + strTo + message, password)
+		encryptedMessage = Csaber.encrypt(versionHeader + senderHeader + recieverHeader + message, password)
 		clientThread = threading.Thread(target=client.clientFunc, args=(target, encryptedMessage))
 		clientThread.start()
 
