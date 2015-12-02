@@ -18,4 +18,5 @@ aldridge85	csjosh.ddns.net
 etsai	etsai.ddns.net
 jbucklin	jbucklin.ddns.net
 po8	po8.org
+lukekaz9 198.29.41.107
 echoserver barton.cs.pdx.edu

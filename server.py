@@ -17,8 +17,6 @@ host = '0.0.0.0'
 
 class server(threading.Thread):
 	def run(self):
-
-		print("Server Started...")
 		self.host_pair = (host, PORT)
 
 		print("Listening on {}:{}.".format(*self.host_pair))
@@ -44,4 +42,8 @@ def getMessage(conn):
 			else:
 				s.close()
 				break;
+	#If the message is empty protocol says to discard
+	if len(buffer) == 0:
+		print("The message was empty.")
+		return
 	messages.append(Csaber.decrypt(buffer, password).decode('ascii') + '\n')

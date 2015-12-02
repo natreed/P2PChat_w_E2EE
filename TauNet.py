@@ -13,21 +13,20 @@ PORT = 6283
 
 addressNames = []
 addressList = []
-log = []
 addressFile = 'addresses.txt'
 strFrom = "from: natreed\r\n"
-strVersion = "version: v0.1\r\n"
+strVersion = "version: 0.2\r\n"
 
 
 # address book
 def addressBook():
-	for i in range(addressList.__len__()):
+	for i in range(len(addressList)):
 		print(i + 1, ". ", addressNames[i])
 	intTarget = int(input("Choose a person to send a message to: "))
 	target = (addressList[intTarget - 1], PORT)
 
 	global strTo
-	strTo = "to: " + addressNames[intTarget - 1] + "\r\n"
+	strTo = "to: " + addressNames[intTarget - 1] + "\r\n\r\n"
 
 	return target
 
