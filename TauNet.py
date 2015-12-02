@@ -59,17 +59,19 @@ def MainScreen():
 
 	if userChoice == "1":
 		target = addressBook()
-
 		message = input("Enter your message:")
-		while len(message.encode('utf-8')) > 94:  # restrict message to 94 bytes
-			message = input("Message is too long. \nEnter message:")
+		#while len(message.encode('utf-8')) > 94:  # restrict message to 94 bytes
+			#message = input("Message is too long. \nEnter message:")
 
 		encryptedMessage = Csaber.encrypt(versionHeader + senderHeader + recieverHeader + message, password)
 		clientThread = threading.Thread(target=client.clientFunc, args=(target, encryptedMessage))
 		clientThread.start()
 
 	elif userChoice == "2":
-		print("Viewing messages..")
+		if len(server.messages) == 0:
+			print("No message for you ..")
+		else:
+			print("Here are your messages..")
 		for msg in server.messages:
 			print((msg))
 
