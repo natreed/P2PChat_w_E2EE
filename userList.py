@@ -2,21 +2,17 @@
 # with Rachael Johnson arenjae.com, email: rj@arenjae.com
 # Also in close collaboration with the CS300 class and Bart Massey, Professor
 
-PORT = 6283
+#PORT = 6283
 addressNames = []
 addressList = []
 addressFile = 'addresses.txt'
-global recieverHeader
-#senderHeader = "from: natreed\r\n"
-#versionHeader = "version: 0.2\r\n"
-
 
 # address book
-def addressBook():
+def addressBook(port):
 	for i in range(len(addressList)):
 		print(i + 1, ". ", addressNames[i])
 	intTarget = int(input("Choose a person to send a message to: "))
-	target = (addressList[intTarget - 1], PORT)
+	target = (addressList[intTarget - 1], port)
 	global recieverHeader
 	recieverHeader = "to: " + addressNames[intTarget - 1] + "\r\n\r\n"
 	return target
