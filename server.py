@@ -18,14 +18,12 @@ host = '0.0.0.0'
 class server(threading.Thread):
 	def run(self):
 		self.host_pair = (host, PORT)
-
 		print("Listening on {}:{}.".format(*self.host_pair))
 		conn = None
 		listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 		listener.bind(self.host_pair)
 		listener.listen(10)
-
 		while True:
 			conn, sender = listener.accept()
 			threading.Thread(target=getMessage, args=(conn,)).start()

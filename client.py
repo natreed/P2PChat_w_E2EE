@@ -13,7 +13,7 @@ def clientFunc(target, message):
         sock.send(message)
 
     except KeyboardInterrupt:
-        print("Killed.")
+        print("Process aborted")
     finally:
         sock.shutdown(socket.SHUT_RDWR)
         sock.close()

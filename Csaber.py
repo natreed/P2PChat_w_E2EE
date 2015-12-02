@@ -4,7 +4,7 @@
 
 from os import urandom
 
-password = str.encode('password')
+password = b'password'
 REPS = 20
 
 def rc43(input, key):
@@ -15,7 +15,6 @@ def rc43(input, key):
         for i in range(256):
             j = (j + state[i] + key[i % len(key)]) % 256
             state[i], state[j] = state[j], state[i]
-
     j = 0
     for i in range(0, len(input)):
         x = (i + 1) % 256
@@ -23,20 +22,17 @@ def rc43(input, key):
         state[x], state[j] = state[j], state[x]
         keystream[i] = state[(state[x] + state[j]) % 256]
         cipher[i] = ((keystream[i]) ^ input[i])
-
     return cipher
 
-
 def encrypt(message, password):
-    message = str.encode(message)
+    message = str.encode(message) #convertmessage to bytes
     iv = urandom(10)
     password += iv
     encryptedMessage = rc43(message, password)
     return iv + encryptedMessage  # concatenate iv and encrypted message
 
-
 def decrypt(message, password):
 	iv = message[0:10]  # grab iv from first 10 characters of message
 	password += iv  # add iv to password
-	message = message[10:message.__len__()]  # real message to decrypt is without the IV
+	message = message[10:len(message)]  # real message to decrypt is without the IV
 	return rc43(message, password)  # decrypt and return decrypted message
