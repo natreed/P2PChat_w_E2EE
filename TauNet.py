@@ -23,17 +23,22 @@ PORT = 6283 #agreed upon port to listen on
 senderHeader = "from: natreed\r\n"
 versionHeader = "version: 0.2\r\n"
 
+
+def userMenu():
+    print("**********************************************")
+    print("What would you like to do?")
+    print("1. Send Message")
+    print("2. View Messages")
+    print("3. Quit")
+    print("**********************************************\n")
+    choice = input(":   ")
+    return choice
+
+
 # Main Screen provides a simple user interface along with a response handler
 def userInterface():
-	print("**********************************************")
-	print("What would you like to do?")
-	print("1. Send Message")
-	print("2. View Messages")
-	print("3. Quit")
-	print("**********************************************")
-	print()
 
-	responseHandler = input(":   ")
+	responseHandler = userMenu()
 
 	#Handler for sending message.
 	if responseHandler == "1":
@@ -48,14 +53,16 @@ def userInterface():
         #to send create separate thread for sending message and start it.
 		clientThread = threading.Thread(target=client.clientFunc, args=(target, encryptedMessage))
 		clientThread.start()
+
     #Handler for checking messages. Check messages list.
 	elif responseHandler == "2":
 		if len(server.messageList) == 0:
-			print("No message for you ..")
+			print("No messages .. ")
 		else:
 			print("Here are your messages..")
 			for x in server.messageList:
 				print((x))
+
     #If user wants to quit, stop looping.
 	elif responseHandler == "3":
 		return False
@@ -63,7 +70,8 @@ def userInterface():
 		print("That is not a valid choice...")
 	return True
 
-# This is where the program really starts
+
+# Main Function starts server and loops on userInterface
 if __name__ == "__main__":
     #Start the server on it's own thread and get it listeninig.
 	serverThread = server.server()

@@ -23,12 +23,10 @@ class server(threading.Thread):
 		#
 		self.host_pair = (host, PORT)
 		print("Listening on ", host, ":", PORT)
+		#print("Listening on {}:{}.".format(*self.host_pair))
 		listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-		try:
-			listener.bind(self.host_pair)
-		except:
-			print("did not recognize host or port")
+		listener.bind(self.host_pair)
 		#listens for up to 5 simultaneous connections
 		listener.listen(5)
 		#Start listening, go to getMessage function

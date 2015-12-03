@@ -14,10 +14,7 @@ def clientFunc(target, message):
         print("Connecting on {}:{}.".format(*target))
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(3)
-        try:
-            sock.connect(target)
-        except:
-            print("could not connect to the target server")
+        sock.connect(target)
         sock.send(message)
 
     except KeyboardInterrupt:
