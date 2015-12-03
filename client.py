@@ -1,8 +1,13 @@
-# Copyright (C) 2015 Nathan Reed, natreed@pdx.edu.  Created in collaboration
-# with Rachael Johnson arenjae.com, email: rj@arenjae.com
+# Copyright (C) 2015 Nathan Reed, natreed@pdx.edu.
+# Collaborated with Rachael Johnson arenjae.com, email: rj@arenjae.com
 # Also in close collaboration with the CS300 class and Bart Massey, Professor
+# An invaluable resource for this was https://pymotw.com/2/select/, https://pymotw.com/2/threading/
+# https://pymotw.com/2/socket/tcp.html#easy-client-connections
+# https://pymotw.com/2/socket/index.html
 
 import socket
+
+
 
 def clientFunc(target, message):
     try:
@@ -17,3 +22,8 @@ def clientFunc(target, message):
     finally:
         sock.shutdown(socket.SHUT_RDWR)
         sock.close()
+
+#function used for testing multiple messages sent simultaneously
+def repeat(target, message):
+    for i in range(10):
+        clientFunc(target, message)

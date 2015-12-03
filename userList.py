@@ -1,10 +1,12 @@
-# Copyright (C) 2015 Nathan Reed, natreed@pdx.edu.  Created in collaboration
-# with Rachael Johnson arenjae.com, email: rj@arenjae.com
+# Copyright (C) 2015 Nathan Reed, natreed@pdx.edu.
+# Collaborated with Rachael Johnson arenjae.com, email: rj@arenjae.com
 # Also in close collaboration with the CS300 class and Bart Massey, Professor
 
-#
 
-#PORT = 6283
+
+#A list of names and a list of addresses
+#the index of the name corresponds that users address in
+#the address list.
 addressNames = []
 addressList = []
 addressFile = 'addresses.txt'

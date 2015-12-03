@@ -1,5 +1,5 @@
-# Copyright (C) 2015 Nathan Reed, natreed@pdx.edu.  Created in collaboration
-# with Rachael Johnson arenjae.com, email: rj@arenjae.com
+# Copyright (C) 2015 Nathan Reed, natreed@pdx.edu.
+# Collaborated with Rachael Johnson arenjae.com, email: rj@arenjae.com
 # Also in close collaboration with the CS300 class and Bart Massey, Professor
 
 from os import urandom
@@ -13,7 +13,7 @@ def rc4(input, key):
     cipher = bytearray(len(input))
     i, j, state, keystream = 0, 0, list(range(256)), bytearray(list(range(len(input))))
 
-    #run key scheduling for designated number of rounds
+    #run key scheduling for designated number of rounds. randomize the state list using key
     for r in range(REPS):
         for i in range(256):
             j = (j + state[i] + key[i % len(key)]) % 256
@@ -24,6 +24,7 @@ def rc4(input, key):
         j = (j + state[x]) % 256
         state[x], state[j] = state[j], state[x]
         keystream[i] = state[(state[x] + state[j]) % 256]
+        #create the cipher using xor
         cipher[i] = ((keystream[i]) ^ input[i])
     return cipher
 

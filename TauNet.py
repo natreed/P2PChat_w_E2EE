@@ -1,5 +1,5 @@
-# Copyright (C) 2015 Nathan Reed, natreed@pdx.edu.  Created in collaboration
-# with Rachael Johnson arenjae.com, email: rj@arenjae.com
+# Copyright (C) 2015 Nathan Reed, natreed@pdx.edu.
+# Collaborated with Rachael Johnson arenjae.com, email: rj@arenjae.com
 # Also in close collaboration with the CS300 class and Bart Massey, Professor
 
 
@@ -31,8 +31,9 @@ def userInterface():
 	print("2. View Messages")
 	print("3. Quit")
 	print("**********************************************")
+	print()
 
-	responseHandler = input(":")
+	responseHandler = input(":   ")
 
 	#Handler for sending message.
 	if responseHandler == "1":
