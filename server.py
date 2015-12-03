@@ -11,7 +11,7 @@ import Csaber
 import threading
 import select
 
-messages = []
+messageList = []
 password = b'password'
 
 PORT = 6283
@@ -30,7 +30,7 @@ class server(threading.Thread):
 		listener.bind(self.host_pair)
 		#listens for up to 5 simultaneous connections
 		listener.listen(5)
-		#Start listening
+		#Start listening, go to getMessage function
 		while True:
 			connection, sender = listener.accept()
 			threading.Thread(target=getMessage, args=(connection,)).start()
@@ -39,17 +39,17 @@ class server(threading.Thread):
 def getMessage(connection):
 	#Wait for notification that an input channel is ready using select() function
 	readable, writable, exceptional = select.select([connection], [], [])
-	buffer = b""
+	message = b""
 	# A "readable" server socket is ready to accept a connection
 	for s in readable:
 		while True:  #read in 256 bytes at a time
 			temp = s.recv(256)
 			if temp:
-				buffer += temp
+				message += temp
 			else: #stream has disconnected and client is ready to be closed
 				s.close()
 				break;
 	#If the message is empty protocol says to discard
-	if len(buffer) == 0:
+	if len(message) == 0:
 		return
-	messages.append(Csaber.decrypt(buffer, password).decode('ascii') + '\n')
+	messageList.append(Csaber.decrypt(message, password).decode('ascii') + '\n')

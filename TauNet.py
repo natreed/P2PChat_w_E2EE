@@ -45,16 +45,16 @@ def userInterface():
 			message = input("Message is too long. \nEnter message:")
         #extract encrypted message using encrypt function
 		encryptedMessage = Csaber.encrypt(versionHeader + senderHeader + userList.recieverHeader + message, password)
-        #send create separate thread for sending message and start it.
+        #to send create separate thread for sending message and start it.
 		clientThread = threading.Thread(target=client.clientFunc, args=(target, encryptedMessage))
 		clientThread.start()
     #Handler for checking messages. Check messages list.
 	elif responseHandler == "2":
-		if len(server.messages) == 0:
+		if len(server.messageList) == 0:
 			print("No message for you ..")
 		else:
 			print("Here are your messages..")
-			for x in server.messages:
+			for x in server.messageList:
 				print((x))
     #If user wants to quit, stop looping.
 	elif responseHandler == "3":
