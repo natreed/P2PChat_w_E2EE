@@ -43,3 +43,20 @@ def decrypt(message, password):
 	password += iv  # add iv to password
 	message = message[10:len(message)]  # real message to decrypt is without the IV
 	return rc4(message, password)  # decrypt and return decrypted message
+
+
+
+#main is used for testing.  I used used test files from Bart's CipherSaber2 repo
+#this works byt the way
+if __name__ == "__main__":
+    password = b'asdfg'
+    REPS = 10
+    infile = open("testfile.txt", 'br')
+    #outfile = open("outfile.txt", 'br')
+    message = infile.read()
+    #message = b'ksjhlkjhgsa'
+
+    print(message)
+    decryptedText = decrypt(message, password)
+    print(decryptedText)
+    encryptedText = encrypt(message, password)
