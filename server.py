@@ -20,7 +20,6 @@ host = '0.0.0.0'
 #Get our server listening on it's own thread by using the threading class
 class server(threading.Thread):
 	def run(self):
-		#
 		self.host_pair = (host, PORT)
 		print("Listening on ", host, ":", PORT)
 		#print("Listening on {}:{}.".format(*self.host_pair))
@@ -51,7 +50,9 @@ def getMessage(connection):
 	#If the message is empty protocol says to discard
 	if len(message) == 0:
 		return
-	messageList.append(Csaber.decrypt(message, password).decode('ascii') + '\n')
+	decryptedMessage = Csaber.decrypt(message, password).decode('ascii')
+	print(decryptedMessage)
+	messageList.append(decryptedMessage + '\n')
 
 
 

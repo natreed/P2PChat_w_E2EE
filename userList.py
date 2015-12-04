@@ -18,7 +18,7 @@ def addressBook(port):
 	for i in range(len(addressList)):
 		print(i + 1, ". ", addressNames[i])
 	#create a target tuple with ip address and port to connect to
-	intTarget = int(input("Choose a person to send a message to: "))
+	intTarget = int(input("Choose a person to send a message to: \n\n"))
 	target = (addressList[intTarget - 1], port)
 	#Get the name using the same index, from the names list and create the receiver
 	#header variable
@@ -40,6 +40,6 @@ def addressBookPopulate():
 		b = addressBook[i].split()
 		addressNames.append(b[0])
 		addressList.append(b[1])
-	addressNames.append('Test')
+	addressNames.append('Test\n')
 	addressList.append('localhost')
 

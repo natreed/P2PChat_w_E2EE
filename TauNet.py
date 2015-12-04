@@ -34,6 +34,20 @@ def userMenu():
     choice = input(":   ")
     return choice
 
+def sendMsg(target):
+	message = input("\n:  ")
+	print
+	if message == "":
+		return False
+    #check message length to make sure it is in bounds
+	while len(message.encode('utf-8')) > 934:
+		message = input("Message is too long. \nEnter message:")
+    #extract encrypted message using encrypt function
+	encryptedMessage = Csaber.encrypt(versionHeader + senderHeader + userList.recieverHeader + message, password)
+    #to send create separate thread for sending message and start it.
+	clientThread = threading.Thread(target=client.clientFunc, args=(target, encryptedMessage))
+	clientThread.start()
+	return True
 
 # Main Screen provides a simple user interface along with a response handler
 def userInterface():
@@ -44,15 +58,15 @@ def userInterface():
 	if responseHandler == "1":
         #addressbook allows user to choose ip address to send a message to
 		target = userList.addressBook(PORT)
-		message = input("Enter your message:")
-        #check message length to make sure it is in bounds
-		while len(message.encode('utf-8')) > 934:
-			message = input("Message is too long. \nEnter message:")
-        #extract encrypted message using encrypt function
-		encryptedMessage = Csaber.encrypt(versionHeader + senderHeader + userList.recieverHeader + message, password)
-        #to send create separate thread for sending message and start it.
-		clientThread = threading.Thread(target=client.clientFunc, args=(target, encryptedMessage))
-		clientThread.start()
+		l = len(server.messageList)
+		print("Enter your message")
+		#Start a Dialogue with someone bypassing the menu to exit just hit enter
+		print("Hit enter AT ANY TIME to return to main menu.")
+		while True:
+			if sendMsg(target):
+				continue
+			else:
+				break
 
     #Handler for checking messages. Check messages list.
 	elif responseHandler == "2":
@@ -73,11 +87,11 @@ def userInterface():
 
 # Main Function starts server and loops on userInterface
 if __name__ == "__main__":
+	#Read in names and IP addresses from address list.
+	userList.addressBookPopulate()
     #Start the server on it's own thread and get it listeninig.
 	serverThread = server.server()
 	serverThread.start()
-    #Read in names and IP addresses from address list.
-	userList.addressBookPopulate()
     #loop on user interface.
 	while userInterface():
 		pass

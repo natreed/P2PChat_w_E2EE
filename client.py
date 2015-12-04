@@ -14,8 +14,13 @@ def clientFunc(target, message):
         print("Connecting on {}:{}.".format(*target))
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(3)
-        sock.connect(target)
-        sock.send(message)
+        try:
+            sock.connect(target)
+            sock.send(message)
+        except:
+            print("\n\n\n{}:{} is unreachable.".format(*target))
+            print("HIT THE ENTER KEY TO RETURN TO THE MENU\n")
+
 
     except KeyboardInterrupt:
         print("Process aborted")
