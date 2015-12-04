@@ -35,8 +35,8 @@ def userMenu():
     return choice
 
 def sendMsg(target):
-	message = input("")
-	print()
+	#l = len(server.messageList)
+	message = input("Reply or 'return': ")
 	#Exit the function with a carriage return
 	if message == "":
 		return False
@@ -59,10 +59,11 @@ def userInterface():
 	if responseHandler == "1":
         #addressbook allows user to choose ip address to send a message to
 		target = userList.addressBook(PORT)
-		l = len(server.messageList)
+
 		print("Enter your message")
 		#Start a Dialogue with someone bypassing the menu to exit just hit enter
 		print("Hit enter AT ANY TIME to return to main menu.")
+
 		while True:
 			if sendMsg(target):
 				continue
