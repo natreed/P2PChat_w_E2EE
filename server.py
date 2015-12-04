@@ -51,7 +51,7 @@ def getMessage(connection):
 	if len(message) == 0:
 		return
 	decryptedMessage = Csaber.decrypt(message, password).decode('ascii')
-	print(decryptedMessage)
+	print(decryptedMessage + "\n")
 	messageList.append(decryptedMessage + '\n')
 
 

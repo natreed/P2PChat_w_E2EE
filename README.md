@@ -8,7 +8,12 @@ Send and receive encrypted messages over a private network via the internet.
 
 - This program is written in python 3. It will work when run with any version of python 3.3 to 3.5.
 - To run the program all files will need to be in the same location. To execute on the command line enter $ python3 TauNet.py
-
+- The main menu gives the options of either sending or recieving messages.  
+- When sending a message you will remain connected on that socket until you hit the carriage return.  This will take you back to the main menu.
+- Messages recieved will show up in real-time.  If you are talking to one person and you receive a message from someone else or want to leave the 
+- conversation for any other reason.  Simply hit return.
+- To switch conversations you must then choose the 'send message' option and send a message to the other person you would like to talk to. 
+- To quit hit the carriage return to exit the conversation and select 'quit' (option 3).
 
 ####For The Encryption
 - Cipher Saber 2
@@ -17,13 +22,6 @@ Send and receive encrypted messages over a private network via the internet.
 - IV thing (10 randomly chosen bytes that are appended to the password)
 - Address Book of names and corresponding IP Addresses
 
-
-
-####Notes
-- Socket python package used for sockets
-    - search for python socket example
-
-- Used threading for concurrent sending and receiving operations
 
 #####Basic Code Outline:
 - Need an encrypt / decrypt function.
@@ -38,6 +36,8 @@ Send and receive encrypted messages over a private network via the internet.
     - Text file should have one line per user / address
     - username should come first, followed by a space, followed by a address
 
+- Used threading for concurrent sending and receiving operations
+- Used python threading for concurrent sending and receiving operation
 
 #####Advance Code Outline:
  - Csaber.py 

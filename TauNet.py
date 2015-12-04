@@ -35,8 +35,9 @@ def userMenu():
     return choice
 
 def sendMsg(target):
-	message = input("\n:  ")
-	print
+	message = input("")
+	print()
+	#Exit the function with a carriage return
 	if message == "":
 		return False
     #check message length to make sure it is in bounds
@@ -49,7 +50,7 @@ def sendMsg(target):
 	clientThread.start()
 	return True
 
-# Main Screen provides a simple user interface along with a response handler
+# Main Screen provides a simple user interface along with a response handlero
 def userInterface():
 
 	responseHandler = userMenu()
@@ -73,7 +74,7 @@ def userInterface():
 		if len(server.messageList) == 0:
 			print("No messages .. ")
 		else:
-			print("Here are your messages..")
+			print("\nHere are your messages..")
 			for x in server.messageList:
 				print((x))
 
