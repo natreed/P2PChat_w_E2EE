@@ -36,7 +36,7 @@ def userMenu():
 
 def sendMsg(target):
 	#l = len(server.messageList)
-	message = input("Reply or 'return': ")
+	message = input(": ")
 	#Exit the function with a carriage return
 	if message == "":
 		return False
