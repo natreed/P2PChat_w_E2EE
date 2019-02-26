@@ -1,6 +1,8 @@
 # TauNet
 =============
-### Private and encrypted communication network of Raspberry Pi2's
+For detailed documentation look here: 
+
+Private and encrypted communication network of Raspberry Pi2's
 
 Send and receive encrypted messages over a private network via the internet.
 
