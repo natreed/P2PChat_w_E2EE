@@ -1,6 +1,6 @@
 # TauNet
 =============
-For detailed documentation look here: 
+For detailed documentation look here:  https://github.com/natreed/P2PChat_w_E2EE/tree/master/documentation
 
 Private and encrypted communication network of Raspberry Pi2's
 
